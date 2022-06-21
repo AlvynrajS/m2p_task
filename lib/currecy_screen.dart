@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:azlistview/azlistview.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:m2p_task/currency/currency.dart';
@@ -22,53 +23,62 @@ class _CurrencyScreenState extends State<CurrencyScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Text("Currency",
-              style: TextStyle(fontWeight: FontWeight.w700, fontSize: 24)),
-          Text("Choose your country",
-              style: TextStyle(fontWeight: FontWeight.w200, fontSize: 16)),
-          FutureBuilder<List<Currency>>(
-            future: fetchcurrency(),
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                return Expanded(
-                  child: ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: snapshot.data?.length ?? 0,
-                    itemBuilder: (context, index) {
-                      Currency currency = snapshot.data![index];
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        iconTheme: const IconThemeData(color: Colors.black),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.only(top: 10, left: 15),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            const Text("Currency",
+                style: TextStyle(fontWeight: FontWeight.w700, fontSize: 36)),
+            const Text("Choose your country",
+                style: TextStyle(
+                    fontWeight: FontWeight.w200,
+                    fontSize: 12,
+                    color: Colors.grey)),
+            FutureBuilder<List<Currency>>(
+              future: fetchcurrency(),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  return Expanded(
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: snapshot.data?.length ?? 0,
+                      itemBuilder: (context, index) {
+                        Currency currency = snapshot.data![index];
 
-                      Map<String, dynamic>? symbol =
-                          currency.toJson()["currencies"];
+                        Map<String, dynamic>? symbol =
+                            currency.toJson()["currencies"];
 
-                      // Text(
-                      //       currency.currencies?.toJson().keys.first ?? ''),
+                        // Text(
+                        //       currency.currencies?.toJson().keys.first ?? ''),
 
-                      return ListTile(
-                        leading: Image.network(
-                          currency.flags?.png ?? '',
-                          width: 50,
-                          height: 50,
-                        ),
-                        title: Text(currency.name?.common?.toString() ?? ''),
-                        trailing: Text(symbol?.keys.first ?? ''),
-                      );
-                    },
-                  ),
-                );
-              } else if (snapshot.hasError) {
-                return Text('${snapshot.error}');
-              }
+                        return ListTile(
+                          leading: Image.network(
+                            currency.flags?.png ?? '',
+                            width: 50,
+                            height: 50,
+                          ),
+                          title: Text(currency.name?.common?.toString() ?? ''),
+                          trailing: Text(symbol?.keys.first ?? ''),
+                        );
+                      },
+                    ),
+                  );
+                } else if (snapshot.hasError) {
+                  return Text('${snapshot.error}');
+                }
 
-              // By default, show a loading spinner.
-              return Center(child: const CircularProgressIndicator());
-            },
-          )
-        ],
+                // By default, show a loading spinner.
+                return Center(child: const CircularProgressIndicator());
+              },
+            )
+          ],
+        ),
       ),
     );
   }
