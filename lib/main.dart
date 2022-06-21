@@ -62,53 +62,50 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           Padding(
             padding: const EdgeInsets.only(top: 15),
-            child: Wrap(
-              direction: Axis.horizontal,
-              spacing: 10.0,
-              runSpacing: 10.0,
-              // alignment: WrapAlignment.spaceEvenly,
-              // runAlignment: WrapAlignment.spaceEvenly,
-              children: [
-                buildContainer(
-                    "https://freeiconshop.com/wp-content/uploads/edd/notification-outline.png",
-                    // Icons.notification_add,
-                    Colors.red,
-                    "Notification"),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const CurrencyScreen()));
-                  },
-                  child: buildContainer(
-                      "https://cdn-icons-png.flaticon.com/512/126/126157.png",
-                      // Icons.money,
-                      Colors.blue,
-                      "Currency"),
-                ),
-                buildContainer(
-                    "https://i.pinimg.com/originals/fe/7f/4b/fe7f4b418e2778863247a7dcc6aed421.png",
-                    // Icons.payment,
-                    Colors.green,
-                    "Payment Methods"),
-                buildContainer(
-                    "https://cdn2.iconfinder.com/data/icons/privacy-policy/512/privacy-data-policy-security-12-512.png",
-                    // Icons.private_connectivity,
-                    Colors.purple,
-                    "Privacy Shortcuts"),
-                buildContainer(
-                    "https://prints.ultracoloringpages.com/13d1340d6674a51114e790ef4eebade5.png",
-                    // Icons.note,
-                    Colors.orange,
-                    "Activity log"),
-                buildContainer(
-                    "https://www.bancosol.com.bo/sites/default/files/1698490.png",
-                    // Icons.note,
-                    Colors.pink,
-                    "Terms & Ploicies")
-              ],
-            ),
+            child:
+                Wrap(direction: Axis.horizontal, spacing: 1.0, runSpacing: 1.0,
+                    // alignment: WrapAlignment.spaceEvenly,
+                    // runAlignment: WrapAlignment.spaceEvenly,
+                    children: [
+                  buildContainer(
+                      "https://freeiconshop.com/wp-content/uploads/edd/notification-outline.png",
+                      // Icons.notification_add,
+                      Colors.red,
+                      "Notification"),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const CurrencyScreen()));
+                    },
+                    child: buildContainer(
+                        "https://cdn-icons-png.flaticon.com/512/126/126157.png",
+                        // Icons.money,
+                        Colors.blue,
+                        "Currency"),
+                  ),
+                  buildContainer(
+                      "https://i.pinimg.com/originals/fe/7f/4b/fe7f4b418e2778863247a7dcc6aed421.png",
+                      // Icons.payment,
+                      Colors.green,
+                      "Payment Methods"),
+                  buildContainer(
+                      "https://cdn2.iconfinder.com/data/icons/privacy-policy/512/privacy-data-policy-security-12-512.png",
+                      // Icons.private_connectivity,
+                      Colors.purple,
+                      "Privacy Shortcuts"),
+                  buildContainer(
+                      "https://prints.ultracoloringpages.com/13d1340d6674a51114e790ef4eebade5.png",
+                      // Icons.note,
+                      Colors.orange,
+                      "Activity log"),
+                  buildContainer(
+                      "https://www.bancosol.com.bo/sites/default/files/1698490.png",
+                      // Icons.note,
+                      Colors.pink,
+                      "Terms & Ploicies")
+                ]),
           )
         ]),
       ),
@@ -116,34 +113,37 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget buildContainer(String url, Color color, String title) {
-    return Container(
-      height: 180,
-      width: 150,
-      decoration: BoxDecoration(border: Border.all(color: Colors.white),
-          // border: Border.all(width: 1),
-          boxShadow: const [
-            BoxShadow(
-                color: Colors.white,
-                blurRadius: 5.0,
-                spreadRadius: 1.0,
-                offset: const Offset(0, 0))
-          ]),
-      child: Center(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-                height: 50,
-                width: 50,
-                clipBehavior: Clip.hardEdge,
-                decoration: const BoxDecoration(
-                  shape: BoxShape.rectangle,
-                ),
-                child: Image.network(url, color: color, fit: BoxFit.cover)),
-            // Icon(icon, color: color),
-            Text(title),
-          ],
+    return Card(
+      elevation: 15.0,
+      child: Container(
+        height: 180,
+        width: 140,
+        decoration: BoxDecoration(border: Border.all(color: Colors.white),
+            // border: Border.all(width: 1),
+            boxShadow: const [
+              BoxShadow(
+                  color: Colors.white,
+                  blurRadius: 5.0,
+                  spreadRadius: 1.0,
+                  offset: const Offset(0, 0))
+            ]),
+        child: Center(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                  height: 50,
+                  width: 50,
+                  clipBehavior: Clip.hardEdge,
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.rectangle,
+                  ),
+                  child: Image.network(url, color: color, fit: BoxFit.cover)),
+              // Icon(icon, color: color),
+              Text(title),
+            ],
+          ),
         ),
       ),
     );
