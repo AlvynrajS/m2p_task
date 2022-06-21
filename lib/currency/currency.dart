@@ -4,7 +4,6 @@ import 'coat_of_arms.dart';
 import 'currencies.dart';
 import 'demonyms.dart';
 import 'flags.dart';
-import 'gini.dart';
 import 'idd.dart';
 import 'languages.dart';
 import 'maps.dart';
@@ -91,65 +90,74 @@ class Currency {
         name: json['name'] == null
             ? null
             : Name.fromJson(json['name'] as Map<String, dynamic>),
-        tld: json['tld'] as List<String>?,
-        cca2: json['cca2'] as String?,
-        ccn3: json['ccn3'] as String?,
-        cca3: json['cca3'] as String?,
-        cioc: json['cioc'] as String?,
-        independent: json['independent'] as bool?,
-        status: json['status'] as String?,
-        unMember: json['unMember'] as bool?,
-        currencies: json['currencies'] == null
-            ? null
-            : Currencies.fromJson(json['currencies'] as Map<String, dynamic>),
-        idd: json['idd'] == null
-            ? null
-            : Idd.fromJson(json['idd'] as Map<String, dynamic>),
-        capital: json['capital'] as List<String>?,
-        altSpellings: json['altSpellings'] as List<String>?,
-        region: json['region'] as String?,
-        subregion: json['subregion'] as String?,
-        languages: json['languages'] == null
-            ? null
-            : Languages.fromJson(json['languages'] as Map<String, dynamic>),
-        translations: json['translations'] == null
-            ? null
-            : Translations.fromJson(
-                json['translations'] as Map<String, dynamic>),
-        latlng: json['latlng'] as List<int>?,
-        landlocked: json['landlocked'] as bool?,
-        borders: json['borders'] as List<String>?,
-        area: json['area'] as int?,
-        demonyms: json['demonyms'] == null
-            ? null
-            : Demonyms.fromJson(json['demonyms'] as Map<String, dynamic>),
-        flag: json['flag'] as String?,
-        maps: json['maps'] == null
-            ? null
-            : Maps.fromJson(json['maps'] as Map<String, dynamic>),
-        population: json['population'] as int?,
-        // gini: json['gini'] == null
-        //     ? null
-        //     : Gini.fromJson(json['gini'] as Map<String, dynamic>),
-        fifa: json['fifa'] as String?,
-        car: json['car'] == null
-            ? null
-            : Car.fromJson(json['car'] as Map<String, dynamic>),
-        timezones: json['timezones'] as List<String>?,
-        continents: json['continents'] as List<String>?,
+
         flags: json['flags'] == null
             ? null
             : Flags.fromJson(json['flags'] as Map<String, dynamic>),
-        coatOfArms: json['coatOfArms'] == null
+
+        currencies: json['currencies'] == null
             ? null
-            : CoatOfArms.fromJson(json['coatOfArms'] as Map<String, dynamic>),
-        startOfWeek: json['startOfWeek'] as String?,
-        capitalInfo: json['capitalInfo'] == null
-            ? null
-            : CapitalInfo.fromJson(json['capitalInfo'] as Map<String, dynamic>),
-        postalCode: json['postalCode'] == null
-            ? null
-            : PostalCode.fromJson(json['postalCode'] as Map<String, dynamic>),
+            : Currencies.fromJson(json['currencies'] as Map<String, dynamic>),
+
+        // // tld: json['tld'] as List<String>?,
+        // cca2: json['cca2'] as String?,
+        // ccn3: json['ccn3'] as String?,
+        // cca3: json['cca3'] as String?,
+        // cioc: json['cioc'] as String?,
+        // independent: json['independent'] as bool?,
+        // status: json['status'] as String?,
+        // unMember: json['unMember'] as bool?,
+        // // currencies: json['currencies'] == null
+        // //     ? null
+        // //     : Currencies.fromJson(json['currencies'] as Map<String, dynamic>),
+        // idd: json['idd'] == null
+        //     ? null
+        //     : Idd.fromJson(json['idd'] as Map<String, dynamic>),
+        // // capital: json['capital'] as List<String>?,
+        // // altSpellings: json['altSpellings'] as List<String>?,
+        // region: json['region'] as String?,
+        // subregion: json['subregion'] as String?,
+        // languages: json['languages'] == null
+        //     ? null
+        //     : Languages.fromJson(json['languages'] as Map<String, dynamic>),
+        // translations: json['translations'] == null
+        //     ? null
+        //     : Translations.fromJson(
+        //         json['translations'] as Map<String, dynamic>),
+        // // latlng: json['latlng'] as List<int>?,
+        // landlocked: json['landlocked'] as bool?,
+        // borders: json['borders'] as List<String>?,
+        // area: json['area'] as int?,
+        // demonyms: json['demonyms'] == null
+        //     ? null
+        //     : Demonyms.fromJson(json['demonyms'] as Map<String, dynamic>),
+        // flag: json['flag'] as String?,
+        // maps: json['maps'] == null
+        //     ? null
+        //     : Maps.fromJson(json['maps'] as Map<String, dynamic>),
+        // population: json['population'] as int?,
+        // // gini: json['gini'] == null
+        // //     ? null
+        // //     : Gini.fromJson(json['gini'] as Map<String, dynamic>),
+        // fifa: json['fifa'] as String?,
+        // car: json['car'] == null
+        //     ? null
+        //     : Car.fromJson(json['car'] as Map<String, dynamic>),
+        // timezones: json['timezones'] as List<String>?,
+        // continents: json['continents'] as List<String>?,
+        // // flags: json['flags'] == null
+        // //     ? null
+        // //     : Flags.fromJson(json['flags'] as Map<String, dynamic>),
+        // coatOfArms: json['coatOfArms'] == null
+        //     ? null
+        //     : CoatOfArms.fromJson(json['coatOfArms'] as Map<String, dynamic>),
+        // startOfWeek: json['startOfWeek'] as String?,
+        // capitalInfo: json['capitalInfo'] == null
+        //     ? null
+        //     : CapitalInfo.fromJson(json['capitalInfo'] as Map<String, dynamic>),
+        // postalCode: json['postalCode'] == null
+        //     ? null
+        //     : PostalCode.fromJson(json['postalCode'] as Map<String, dynamic>),
       );
 
   Map<String, dynamic> toJson() => {

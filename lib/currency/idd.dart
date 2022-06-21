@@ -6,7 +6,7 @@ class Idd {
 
   factory Idd.fromJson(Map<String, dynamic> json) => Idd(
         root: json['root'] as String?,
-        suffixes: json['suffixes'] as List<String>?,
+        // suffixes: json['suffixes'] as List<String>?,
       );
 
   Map<String, dynamic> toJson() => {
