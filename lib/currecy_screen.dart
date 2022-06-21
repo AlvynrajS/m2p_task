@@ -1,7 +1,9 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:intl/intl.dart';
 import 'package:m2p_task/currency/currency.dart';
 
 class CurrencyScreen extends StatefulWidget {
@@ -40,23 +42,25 @@ class _CurrencyScreenState extends State<CurrencyScreen> {
                     shrinkWrap: true,
                     itemCount: snapshot.data?.length ?? 0,
                     itemBuilder: (context, index) {
-                      Currency currency = snapshot.data![index];
+                      Currency country = snapshot.data![index];
 
-                      Map<String, dynamic>? symbol =
-                          currency.toJson()["currencies"];
+                      Map<String, dynamic>? currency =
+                          country.toJson()["currencies"];
+
+                      //printCurrency(currency?.keys.first ?? '');
 
                       // Text(
                       //       currency.currencies?.toJson().keys.first ?? ''),
 
                       return ListTile(
-                        leading: Image.network(
-                          currency.flags?.png ?? '',
-                          width: 50,
-                          height: 50,
-                        ),
-                        title: Text(currency.name?.common?.toString() ?? ''),
-                        trailing: Text(symbol?.keys.first ?? ''),
-                      );
+                          leading: Image.network(
+                            country.flags?.png ?? '',
+                            width: 50,
+                            height: 50,
+                          ),
+                          title: Text(country.name?.common?.toString() ?? ''),
+                          trailing:
+                              Text(getCurrency(currency?.keys.first ?? '')));
                     },
                   ),
                 );
@@ -76,7 +80,12 @@ class _CurrencyScreenState extends State<CurrencyScreen> {
   List<Currency> parseCurrency(String responseBody) {
     final parsed = jsonDecode(responseBody).cast<Map<String, dynamic>>();
 
-    return parsed.map<Currency>((json) => Currency.fromJson(json)).toList();
+    List<Currency> countryList =
+        parsed.map<Currency>((json) => Currency.fromJson(json)).toList();
+
+    countryList.sort((a, b) => a.name!.common!.compareTo(b.name!.common!));
+
+    return countryList;
   }
 
   Future<List<Currency>> fetchcurrency() async {
@@ -85,22 +94,10 @@ class _CurrencyScreenState extends State<CurrencyScreen> {
 
     return parseCurrency(response.body);
   }
+
+  String getCurrency(String countryCode) {
+    var format = NumberFormat.simpleCurrency(
+        locale: Platform.localeName, name: countryCode);
+    return format.currencySymbol;
+  }
 }
-
-// class CurrencyList extends StatelessWidget {
-//   const CurrencyList({Key? key, required this.currency}) : super(key: key);
-
-//   final List<Currency> currency;
-
-//   @override
-
-//   Widget build(BuildContext context) {
-//     return ListView.builder(
-//       itemCount: currency.length,
-//       itemBuilder:(context, index){
-//         return Text(currency[index][flags].toString());
-//       }
-      
-//       );
-//   }
-// }
