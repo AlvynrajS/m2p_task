@@ -50,7 +50,8 @@ class _CurrencyScreenState extends State<CurrencyScreen> {
                       itemCount: snapshot.data?.length ?? 0,
                       itemBuilder: (context, index) {
                         Currency currency = snapshot.data![index];
-
+ 
+ 
                         Map<String, dynamic>? symbol =
                             currency.toJson()["currencies"];
 
